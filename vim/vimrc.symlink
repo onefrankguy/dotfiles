@@ -1,0 +1,87 @@
+" Using pathogen. It modifies the runtime path to include the plugins
+" under the ~/.vim/bundle folder.
+call pathogen#infect()
+
+" Change the mapleader from \ to ,
+let mapleader=","
+
+" Quick edit/reload for .vimrc
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" Basic behavior tweaks
+set hidden "Hide buffers instead of closing them
+set nowrap "Don't wrap lines
+set tabstop=2 "A tab is two spaces
+set softtabstop=2 "Really, a tab is two spaces
+set expandtab "And no, I don't like tabs
+set backspace=indent,eol,start "Allow backspacing in insert mode
+set autoindent "Turn autoindenting on
+set copyindent "Copy the previous indentation on autoindent
+set number "Show line numbers
+set shiftwidth=2 "Number of spaces to use for autoindent
+set shiftround "Use multiples of shiftwidth when indenting
+set showmatch "Show matching parenthesis
+set ignorecase "Ignore case when searching
+set smartcase "Ignore case if search pattern is all lowercase
+set smarttab "Insert tabs according to shfitwdith not tabstop
+set hlsearch "Hilight search tems
+set incsearch "Show search matches as I type
+
+set history=1000 "Remember more commands
+set undolevels=1000 "Back, back, back in time
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set visualbell "Don't beep
+set noerrorbells "Really, don't beep
+
+" Allow for custom settings according to file types
+filetype plugin indent on
+
+" Turn on syntax hilighting
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  syntax enable
+endif
+
+" Turn on nice colors
+if &t_Co >= 256 || has("gui_running")
+  set background=dark
+  colorscheme solarized
+endif
+
+" Code, make it all read like code
+set guifont=Anonymous\ Pro:h16
+
+" Show trailing invisible characters
+set list
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
+
+" Hilight lines tha run past 80 characters in length.
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
+
+" Fast keyboard shortcuts
+nnoremap ; :
+
+" Fast search buffer clearing
+nmap <silent> <leader>/ :nohlsearch<CR>
+
+" Don't rely on the arrow keys for movement
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
+" Jump the cursor nicely on wrapped lines
+nnoremap j gj
+nnoremap k gk
+
+" Sudo editing of files
+cmap w!! w !sudo tee % >/dev/null
+
+" Yank tex to the OS X clipboard
+noremap <leader>y "*y
+noremap <leader>yy "*Y
+
+" Preserve indentation when pasting text from the OS X clipboard
+noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
