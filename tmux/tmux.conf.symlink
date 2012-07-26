@@ -12,3 +12,8 @@ set -g pane-base-index 1
 # Make tmux work like Vim
 set -g status-keys vi
 set -g mode-keys vi
+
+# Use C-a for a prefix because caps lock is mapped to ctrl
+unbind C-b
+set -g prefix C-a
+bind C-a send-prefix
