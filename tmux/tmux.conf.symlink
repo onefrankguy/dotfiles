@@ -31,3 +31,9 @@ bind v split-window -h
 # Enables fast pane switching
 unbind ^A
 bind ^A select-pane -t :.+
+
+# Enables vi style pane navigation
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
