@@ -21,3 +21,9 @@ bind C-a send-prefix
 # Enables quick edits of this config
 unbind r
 bind r source-file ~/.tmux.conf; display "Reloaded"
+
+# Enables fast pane creation
+unbind %
+bind s split-window -v
+unbind '"'
+bind v split-window -h
