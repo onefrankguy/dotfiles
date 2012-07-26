@@ -5,6 +5,10 @@ set -g mode-mouse on
 setw -g mouse-select-window on
 setw -g mouse-select-pane on
 
+# Count windows and panes from 1
+set -g base-index 1
+set -g pane-base-index 1
+
 setw -g mode-keys vi
 bind ` copy-mode
 unbind [
