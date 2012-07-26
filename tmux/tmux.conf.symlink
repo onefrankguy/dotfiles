@@ -9,7 +9,10 @@ setw -g mouse-select-pane on
 set -g base-index 1
 set -g pane-base-index 1
 
-setw -g mode-keys vi
+# Make tmux work like Vim
+set -g status-keys vi
+set -g mode-keys vi
+
 bind ` copy-mode
 unbind [
 unbind p
