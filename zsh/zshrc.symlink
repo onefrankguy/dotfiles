@@ -49,3 +49,6 @@ bindkey '^N' history-search-forward
 
 # Enable nice directory navigation
 setopt AUTO_CD
+
+# Turn off globbing for specific commands
+alias rake="noglob rake"
