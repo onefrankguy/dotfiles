@@ -52,3 +52,9 @@ setopt AUTO_CD
 
 # Turn off globbing for specific commands
 alias rake="noglob rake"
+
+# Life's too short to forget what's important
+if [[ -o interactive ]]; then
+  print "Follow your dreams; work less; say what you think;"
+  print "cultivate friendships; be happy.\n"
+fi
