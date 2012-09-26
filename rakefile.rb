@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
 
 require 'rake'
+require 'rbconfig'
+
+is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/) 
+prefix = is_windows ? '_' : '.'
 
 desc 'Install dotfiles'
 task :install do
@@ -15,7 +19,8 @@ task :install do
     backup = false
 
     file = linkable.split('/').last.split('.symlink').last
-    target = "#{ENV['HOME']}/.#{file}"
+    target = "#{ENV['HOME']}/#{prefix}#{file}"
+    pwd = File.dirname(__FILE__)
 
     if File.exists?(target) || File.symlink?(target)
       unless skip_all || overwrite_all || backup_all
@@ -40,7 +45,11 @@ task :install do
       `mv "$HOME/.#{file}" "$HOME/.#{file}.backup"` if backup || backup_all
     end
 
-    `ln -s "$PWD/#{linkable}" "#{target}"`
+    if is_windows
+      FileUtils.ln File.join(pwd, linkable), target
+    else
+      FileUtils.ln_s File.join(pwd, linkable), target
+    end
   end
 end
 
@@ -48,8 +57,10 @@ desc 'Uninstall dotfiles'
 task :uninstall do
   Dir.glob('**/*.symlink').each do |linkable|
     file = linkable.split('/').last.split('.symlink').last
-    target = "#{ENV['HOME']}/.#{file}"
-    FileUtils.rm(target) if File.symlink?(target)
+    target = "#{ENV['HOME']}/#{prefix}#{file}"
+    if File.symlink?(target) || (is_windows && File.exists?(target))
+      FileUtils.rm(target)
+    end
     if File.exists?("#{ENV['HOME']}/.#{file}.backup")
       `mv "$HOME/.#{file}.backup" "$HOME/.#{file}"`
     end
