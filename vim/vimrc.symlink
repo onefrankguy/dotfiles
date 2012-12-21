@@ -100,5 +100,5 @@ if has('autocmd')
 endif
 
 " Prefer UNIX line endings to DOS ones
-fileformats=unix,dos
-fileformat=unix
+set fileformats=unix,dos
+set fileformat=unix
