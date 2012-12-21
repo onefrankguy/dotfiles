@@ -34,6 +34,9 @@ set wildignore=*.swp,*.bak,*.pyc,*.class
 set visualbell "Don't beep
 set noerrorbells "Really, don't beep
 
+" Turns off the status line, even if some plugins turn it on
+set laststatus=0
+
 " Allow for custom settings according to file types
 filetype plugin indent on
 
@@ -85,3 +88,17 @@ noremap <leader>yy "*Y
 
 " Preserve indentation when pasting text from the OS X clipboard
 noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
+
+" Make cycling through buffers nicer
+nnoremap <Tab> :bnext<CR>:redraw<CR>:ls<CR>
+nnoremap <S-Tab> :bprevious<CR>:redraw<CR>:ls<CR>
+
+" Disables visual bells
+set noerrorbells visualbell t_vb=
+if has('autocmd')
+  autocmd GUIEnter * set visualbell t_vb=
+endif
+
+" Prefer UNIX line endings to DOS ones
+fileformats=unix,dos
+fileformat=unix
