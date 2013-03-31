@@ -1,4 +1,4 @@
-PROMPT='%{$fg[magenta]%}Wizard%{$reset_color%} in %{$fg_bold[green]%}${${PWD/#$HOME/~}##*/}%{$reset_color%}$(git_prompt_info) $ '
+PROMPT='%{$fg[magenta]%}${USER}%{$reset_color%} in %{$fg_bold[green]%}${${PWD/#$HOME/~}##*/}%{$reset_color%}$(git_prompt_info) $ '
 RPROMPT=''
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[yellow]%}"
