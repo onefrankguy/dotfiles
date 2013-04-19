@@ -53,6 +53,9 @@ setopt AUTO_CD
 # Turn off globbing for specific commands
 alias rake="noglob rake"
 
+# Mimic FileUtils.mkpath from Ruby 'cause it's useful
+alias mkpath="mkdir -p"
+
 # Life's too short to forget what's important
 if [[ -o interactive ]]; then
   print "Follow your dreams; work less; say what you think;"
