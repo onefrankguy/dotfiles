@@ -102,3 +102,7 @@ endif
 " Prefer UNIX line endings to DOS ones
 set fileformats=unix,dos
 set fileformat=unix
+
+" Turn off folding on the vim-markdown plugin.
+" https://github.com/plasticboy/vim-markdown.git
+let vim_markdown_folding_disabled = "true"
