@@ -56,6 +56,14 @@ alias rake="noglob rake"
 # Mimic FileUtils.mkpath from Ruby 'cause it's useful
 alias mkpath="mkdir -p"
 
+# Fix up/down arrow history so it behaves sanely on my Raspberry Pi
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
+
 # Life's too short to forget what's important
 if [[ -o interactive ]]; then
   print "Follow your dreams; work less; say what you think;"
